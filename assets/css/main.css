@@ -892,7 +892,66 @@ button,
       margin: 1em 0 0 0;
       position: relative; } }
 
-/* 生成页：错误提示 + 成功区（链接 / 一键复制 / 右侧二维码） */
+/* 生成页：输入行与绿色框二维码并列；下方为链接与复制（覆盖全局 button 白字，避免看不见） */
+.fang-top-row {
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -moz-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -moz-align-items: flex-start;
+  -webkit-align-items: flex-start;
+  -ms-align-items: flex-start;
+  align-items: flex-start;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  gap: 1.25em 1.5em;
+  margin: 0 auto;
+  max-width: 52em;
+}
+.fang-qr-green-card {
+  -moz-flex: 0 0 auto;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  text-align: center;
+  padding: 0.65em 0.75em 0.5em;
+  min-width: 8.5em;
+  background: linear-gradient(165deg, rgba(28, 180, 149, 0.28) 0%, rgba(28, 180, 149, 0.1) 100%);
+  border: 2px solid #1cb495;
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+}
+.fang-qr-green-card .fang-qr-caption {
+  display: block;
+  font-size: 0.8em;
+  margin: 0 0 0.4em 0;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+}
+.fang-qr-green-card img {
+  display: block;
+  margin: 0 auto;
+  width: 168px;
+  height: 168px;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+.fang-qr-green-card .fang-qr-note {
+  display: block;
+  margin-top: 0.45em;
+  max-width: 168px;
+  font-size: 0.62em;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.65);
+}
 .fang-url-msg {
   margin: 1em 0;
   line-height: 1.6;
@@ -900,21 +959,10 @@ button,
   word-break: break-word;
 }
 .fang-success-panel {
-  margin: 1.25em auto 0;
+  margin: 1em auto 0;
   max-width: 52em;
   width: 100%;
-}
-.fang-result-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 2em;
   text-align: left;
-}
-.fang-result-main {
-  flex: 1 1 280px;
-  min-width: 0;
 }
 .fang-url-out {
   margin: 0 0 0.75em 0;
@@ -929,23 +977,33 @@ button,
 .fang-copy-row {
   margin: 0 0 0.75em 0;
 }
-.fang-copy-btn {
+/* 全局 input[type=button]/button 使用 color:#fff !important，此处必须更高优先级 + 白底深字 */
+button#fang-copy-btn.fang-copy-btn,
+#fang-copy-btn.fang-copy-btn {
   cursor: pointer;
   display: inline-block;
-  padding: 0.55em 1.1em;
-  font-size: 0.95em;
-  font-family: inherit;
-  color: #000;
-  background: rgba(255, 255, 255, 0.92);
-  border: none;
-  border-radius: 4px;
-  font-weight: 600;
+  height: auto !important;
+  line-height: 1.45 !important;
+  padding: 0.55em 1.15em !important;
+  font-size: 0.95em !important;
+  font-family: inherit !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  background-color: #ffffff !important;
+  border: 2px solid #0f172a !important;
+  border-radius: 6px !important;
+  white-space: normal !important;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
 }
-.fang-copy-btn:hover {
-  background: #fff;
+button#fang-copy-btn.fang-copy-btn:hover,
+#fang-copy-btn.fang-copy-btn:hover {
+  background-color: #f1f5f9 !important;
+  border-color: #1cb495 !important;
+  color: #0f172a !important;
 }
-.fang-copy-btn:active {
-  opacity: 0.92;
+button#fang-copy-btn.fang-copy-btn:active,
+#fang-copy-btn.fang-copy-btn:active {
+  background-color: #e2e8f0 !important;
 }
 .fang-gen-hint {
   margin: 0;
@@ -953,51 +1011,19 @@ button,
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.5;
 }
-.fang-result-qr {
-  flex: 0 0 auto;
-  text-align: center;
-  padding: 0.5em;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 8px;
-}
-.fang-qr-caption {
-  display: block;
-  font-size: 0.85em;
-  margin-bottom: 0.5em;
-  color: rgba(255, 255, 255, 0.75);
-}
-.fang-result-qr img {
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-  height: auto;
-  background: #fff;
-  border-radius: 4px;
-}
-.fang-qr-note {
-  display: block;
-  margin-top: 0.5em;
-  max-width: 180px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 0.7em;
-  line-height: 1.4;
-  color: rgba(255, 255, 255, 0.45);
-}
 @media screen and (max-width: 736px) {
-  .fang-result-row {
+  .fang-top-row {
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    -ms-align-items: center;
     align-items: center;
-    gap: 1.25em;
   }
-  .fang-result-main {
+  .fang-qr-green-card {
     width: 100%;
-    text-align: center;
-  }
-  .fang-url-out {
-    text-align: left;
-  }
-  .fang-copy-row {
-    text-align: center;
+    max-width: 280px;
   }
 }

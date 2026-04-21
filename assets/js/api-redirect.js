@@ -64,12 +64,13 @@
 			'<div class="fang-wx-notice"><p class="fang-wx-lead-lg">系统检测到内置浏览器限制</p><p class="fang-wx-muted">请点右上角 <b>···</b>，用系统浏览器打开本页。参考地址：<b class="fang-wx-url">' +
 				u +
 				"</b></p></div>",
-			'<div class="fang-wx-notice"><h3 class="fang-wx-h3">外链需在浏览器中访问</h3><div class="fang-wx-steps">' +
-				'<p class="fang-wx-line"><span class="fang-wx-num">1.</span>点右上角「···」</p>' +
-				'<p class="fang-wx-line"><span class="fang-wx-num">2.</span>选「在浏览器打开」</p>' +
-				'<p class="fang-wx-line"><span class="fang-wx-num">3.</span>或复制：<span class="fang-wx-url">' +
+			'<div class="fang-wx-notice"><h3 class="fang-wx-h3">外链需在浏览器中访问</h3>' +
+				'<div class="fang-wx-steps fang-wx-steps-br">' +
+				'<span class="fang-wx-num">1.</span>点右上角「···」<br />' +
+				'<span class="fang-wx-num">2.</span>选「在浏览器打开」<br />' +
+				'<span class="fang-wx-num">3.</span>或复制：<span class="fang-wx-url">' +
 				u +
-				"</span></p></div></div>",
+				"</span></div></div>",
 		];
 		return blocks[id];
 	}

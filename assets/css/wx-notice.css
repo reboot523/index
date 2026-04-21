@@ -71,7 +71,7 @@ body {
 	color: #c00;
 	font-weight: 700;
 }
-/* 微信 X5 常把相邻 div 压成一行；用 p + !important 强制块级换行；序号用独立 span */
+/* 微信 X5：相邻块易被压成一行；三步模板用显式 <br /> + .fang-wx-steps-br */
 #tips .fang-wx-steps {
 	display: block !important;
 	width: 100%;
@@ -80,20 +80,17 @@ body {
 	box-sizing: border-box;
 	text-align: left !important;
 }
-#tips .fang-wx-steps .fang-wx-line {
-	display: block !important;
-	width: 100% !important;
-	margin: 0.55em 0 !important;
-	padding: 0 !important;
-	line-height: 1.75 !important;
+#tips .fang-wx-steps-br {
+	line-height: 2 !important;
+	font-size: 16px;
 	color: #334155;
 	text-align: left !important;
+	word-break: break-word;
 	-webkit-text-size-adjust: 100%;
 }
-#tips .fang-wx-steps .fang-wx-num {
-	display: inline !important;
+#tips .fang-wx-steps-br .fang-wx-num {
 	font-weight: 700 !important;
-	margin-right: 0.25em;
+	margin-right: 0.2em;
 	color: #0f172a;
 }
 #tips .fang-wx-card {

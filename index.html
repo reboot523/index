@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="robots" content="noindex, nofollow, noarchive" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css?v=7" />
+		<link rel="stylesheet" href="assets/css/main.css?v=9" />
 	</head>
 	<body class="is-preload">
 
@@ -13,34 +13,32 @@
 			<header id="header">
 				<h1>防红跳转接口</h1>
 				<p>在下方输入需要跳转的链接，即可生成防红链接。<br>
-					复制下方生成的链接，粘贴到微信或QQ中打开即可跳转。</p>
+					生成后可在右侧绿色框内扫码，或复制链接到微信或QQ中打开。</p>
 			</header>
 
-		<!-- Signup Form -->
-			<form id="signup-form" method="post">
-				<input type="url" name="url" id="url" placeholder="需要跳转的网址" lang="zh-CN" />
-				<input type="button" value="生成" onclick="build_url()"/>
-			</form>
+		<!-- 输入行 + 与「生成」同列右侧：绿色主题二维码区 -->
+			<div class="fang-top-row">
+				<form id="signup-form" method="post">
+					<input type="url" name="url" id="url" placeholder="需要跳转的网址" lang="zh-CN" />
+					<input type="button" value="生成" onclick="build_url()"/>
+				</form>
+				<aside id="fang-qr-aside" class="fang-qr-green-card" hidden aria-label="二维码">
+					<span class="fang-qr-caption">扫码打开</span>
+					<img id="fang-qr-img" src="" alt="" width="168" height="168" decoding="async" referrerpolicy="no-referrer" />
+					<small class="fang-qr-note">由第三方接口生成，仅展示当前链接</small>
+				</aside>
+			</div>
 			<p id="b_url" class="fang-url-msg" role="status"></p>
 			<div id="fang-success-panel" class="fang-success-panel" hidden>
-				<div class="fang-result-row">
-					<div class="fang-result-main">
-						<p class="fang-url-out"><a id="fang-gen-link" href="#" target="_blank" rel="noopener noreferrer"></a></p>
-						<p class="fang-copy-row">
-							<button type="button" id="fang-copy-btn" class="fang-copy-btn">一键复制链接</button>
-						</p>
-						<p class="fang-gen-hint"><small id="fang-gen-hint"></small></p>
-					</div>
-					<aside class="fang-result-qr" aria-label="二维码">
-						<span class="fang-qr-caption">扫码打开</span>
-						<img id="fang-qr-img" src="" alt="" width="180" height="180" decoding="async" referrerpolicy="no-referrer" />
-						<small class="fang-qr-note">二维码由第三方接口生成，仅用于展示当前链接。</small>
-					</aside>
-				</div>
+				<p class="fang-url-out"><a id="fang-gen-link" href="#" target="_blank" rel="noopener noreferrer"></a></p>
+				<p class="fang-copy-row">
+					<button type="button" id="fang-copy-btn" class="fang-copy-btn">一键复制链接</button>
+				</p>
+				<p class="fang-gen-hint"><small id="fang-gen-hint"></small></p>
 			</div>
 
-			<script src="./assets/js/redirect-crypto.js?v=8"></script>
-			<script src="./assets/js/build_url.js?v=8"></script>
+			<script src="./assets/js/redirect-crypto.js?v=9"></script>
+			<script src="./assets/js/build_url.js?v=9"></script>
 
 		<!-- Footer -->
 			<footer id="footer">
@@ -50,6 +48,6 @@
 			</footer>
 
 		<!-- Scripts -->
-			<script src="assets/js/main.js?v=8"></script>
+			<script src="assets/js/main.js?v=9"></script>
 	</body>
 </html>

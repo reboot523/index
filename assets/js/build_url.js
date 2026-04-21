@@ -4,7 +4,7 @@ var FANG_API_SHELLS = ["README.html", "docs.html", "LICENSE.html", "SECURITY.htm
 var FANG_API_DIR = "";
 
 var FANG_QR_API =
-	"https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=";
+	"https://api.qrserver.com/v1/create-qr-code/?size=168x168&margin=8&data=";
 
 function escapeHtml(s) {
 	return String(s)
@@ -17,8 +17,12 @@ function escapeHtml(s) {
 function showError(msgHtml) {
 	var errEl = document.getElementById("b_url");
 	var panel = document.getElementById("fang-success-panel");
+	var qrAside = document.getElementById("fang-qr-aside");
 	if (panel) {
 		panel.hidden = true;
+	}
+	if (qrAside) {
+		qrAside.hidden = true;
 	}
 	if (errEl) {
 		errEl.innerHTML = msgHtml;
@@ -113,6 +117,10 @@ async function build_url() {
 	}
 	if (panel) {
 		panel.hidden = false;
+	}
+	var qrAside = document.getElementById("fang-qr-aside");
+	if (qrAside) {
+		qrAside.hidden = false;
 	}
 	if (linkEl) {
 		linkEl.href = finalUrl;
