@@ -891,3 +891,113 @@ button,
       left: auto;
       margin: 1em 0 0 0;
       position: relative; } }
+
+/* 生成页：错误提示 + 成功区（链接 / 一键复制 / 右侧二维码） */
+.fang-url-msg {
+  margin: 1em 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  word-break: break-word;
+}
+.fang-success-panel {
+  margin: 1.25em auto 0;
+  max-width: 52em;
+  width: 100%;
+}
+.fang-result-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2em;
+  text-align: left;
+}
+.fang-result-main {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+.fang-url-out {
+  margin: 0 0 0.75em 0;
+  line-height: 1.5;
+  word-break: break-all;
+}
+.fang-url-out a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.fang-copy-row {
+  margin: 0 0 0.75em 0;
+}
+.fang-copy-btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.55em 1.1em;
+  font-size: 0.95em;
+  font-family: inherit;
+  color: #000;
+  background: rgba(255, 255, 255, 0.92);
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.fang-copy-btn:hover {
+  background: #fff;
+}
+.fang-copy-btn:active {
+  opacity: 0.92;
+}
+.fang-gen-hint {
+  margin: 0;
+  opacity: 0.75;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+.fang-result-qr {
+  flex: 0 0 auto;
+  text-align: center;
+  padding: 0.5em;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+}
+.fang-qr-caption {
+  display: block;
+  font-size: 0.85em;
+  margin-bottom: 0.5em;
+  color: rgba(255, 255, 255, 0.75);
+}
+.fang-result-qr img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  background: #fff;
+  border-radius: 4px;
+}
+.fang-qr-note {
+  display: block;
+  margin-top: 0.5em;
+  max-width: 180px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.7em;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.45);
+}
+@media screen and (max-width: 736px) {
+  .fang-result-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25em;
+  }
+  .fang-result-main {
+    width: 100%;
+    text-align: center;
+  }
+  .fang-url-out {
+    text-align: left;
+  }
+  .fang-copy-row {
+    text-align: center;
+  }
+}

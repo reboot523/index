@@ -78,6 +78,7 @@ body {
 	max-width: 400px;
 	margin: 0 auto !important;
 	box-sizing: border-box;
+	text-align: left !important;
 }
 #tips .fang-wx-steps .fang-wx-line {
 	display: block !important;
@@ -86,7 +87,7 @@ body {
 	padding: 0 !important;
 	line-height: 1.75 !important;
 	color: #334155;
-	text-align: center !important;
+	text-align: left !important;
 	-webkit-text-size-adjust: 100%;
 }
 #tips .fang-wx-steps .fang-wx-num {

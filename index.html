@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="zh-CN">
 	<head>
 		<title>QQ、微信防红接口 - 勿埋我心</title>
 		<meta charset="utf-8" />
@@ -18,13 +18,29 @@
 
 		<!-- Signup Form -->
 			<form id="signup-form" method="post">
-				<input type="url" name="url" id="url" placeholder="需要跳转的网址" />
+				<input type="url" name="url" id="url" placeholder="需要跳转的网址" lang="zh-CN" />
 				<input type="button" value="生成" onclick="build_url()"/>
 			</form>
-			<p id="b_url"></p>
+			<p id="b_url" class="fang-url-msg" role="status"></p>
+			<div id="fang-success-panel" class="fang-success-panel" hidden>
+				<div class="fang-result-row">
+					<div class="fang-result-main">
+						<p class="fang-url-out"><a id="fang-gen-link" href="#" target="_blank" rel="noopener noreferrer"></a></p>
+						<p class="fang-copy-row">
+							<button type="button" id="fang-copy-btn" class="fang-copy-btn">一键复制链接</button>
+						</p>
+						<p class="fang-gen-hint"><small id="fang-gen-hint"></small></p>
+					</div>
+					<aside class="fang-result-qr" aria-label="二维码">
+						<span class="fang-qr-caption">扫码打开</span>
+						<img id="fang-qr-img" src="" alt="" width="180" height="180" decoding="async" referrerpolicy="no-referrer" />
+						<small class="fang-qr-note">二维码由第三方接口生成，仅用于展示当前链接。</small>
+					</aside>
+				</div>
+			</div>
 
-			<script src="./assets/js/redirect-crypto.js?v=7"></script>
-			<script src="./assets/js/build_url.js"></script>
+			<script src="./assets/js/redirect-crypto.js?v=8"></script>
+			<script src="./assets/js/build_url.js?v=8"></script>
 
 		<!-- Footer -->
 			<footer id="footer">
@@ -34,6 +50,6 @@
 			</footer>
 
 		<!-- Scripts -->
-			<script src="assets/js/main.js?v=7"></script>
+			<script src="assets/js/main.js?v=8"></script>
 	</body>
 </html>
