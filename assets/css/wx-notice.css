@@ -34,6 +34,9 @@ body {
 	-webkit-text-size-adjust: 100%;
 	text-align: center;
 }
+#tips .fang-wx-h3-steps {
+	text-align: left !important;
+}
 #tips .fang-wx-body {
 	margin: 0;
 	line-height: 1.6;
@@ -71,27 +74,30 @@ body {
 	color: #c00;
 	font-weight: 700;
 }
-/* 微信 X5：相邻块易被压成一行；三步模板用显式 <br /> + .fang-wx-steps-br */
-#tips .fang-wx-steps {
-	display: block !important;
+/* 微信 X5：<br>/多 div 易被压成一行；第 4 套提示改为 table 三行，序号列 + 文案列 */
+#tips .fang-wx-step-tbl {
 	width: 100%;
 	max-width: 400px;
-	margin: 0 auto !important;
-	box-sizing: border-box;
-	text-align: left !important;
-}
-#tips .fang-wx-steps-br {
-	line-height: 2 !important;
+	margin: 0 auto;
+	border-collapse: collapse;
+	text-align: left;
 	font-size: 16px;
 	color: #334155;
-	text-align: left !important;
-	word-break: break-word;
+	line-height: 1.75;
 	-webkit-text-size-adjust: 100%;
 }
-#tips .fang-wx-steps-br .fang-wx-num {
-	font-weight: 700 !important;
-	margin-right: 0.2em;
+#tips .fang-wx-step-tbl td {
+	padding: 6px 6px 6px 0;
+	vertical-align: top;
+}
+#tips .fang-wx-td-num {
+	width: 2em;
+	font-weight: 700;
 	color: #0f172a;
+	white-space: nowrap;
+}
+#tips .fang-wx-td-txt {
+	word-break: break-word;
 }
 #tips .fang-wx-card {
 	max-width: 320px;

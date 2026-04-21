@@ -15,8 +15,12 @@
 			"body.fang-api-page{min-height:100vh;min-height:100dvh;min-height:-webkit-fill-available;overscroll-behavior-y:contain;overscroll-behavior-x:none;-webkit-overflow-scrolling:touch;}" +
 			"body.fang-api-page .wrap{min-height:100vh;min-height:100dvh;min-height:-webkit-fill-available;display:flex;align-items:center;justify-content:center;" +
 			"padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));box-sizing:border-box;}" +
-			"body.fang-api-page #tips{width:100%;max-width:420px;padding:0 8px;box-sizing:border-box;word-break:break-word;-webkit-tap-highlight-color:transparent;}";
-			/* 微信提示样式见 assets/css/wx-notice.css（壳页 head 直链，避免 X5 仅用 JS 注入时失效或强缓存旧脚本） */
+			"body.fang-api-page #tips{width:100%;max-width:420px;padding:0 8px;box-sizing:border-box;word-break:break-word;-webkit-tap-highlight-color:transparent;}" +
+			/* 微信 X5：三步提示用 table，此处再注入一遍，防 wx-notice.css 强缓存旧版 */
+			"body.fang-api-page #tips .fang-wx-step-tbl{width:100%;border-collapse:collapse;text-align:left;font-size:16px;color:#334155;line-height:1.75;}" +
+			"body.fang-api-page #tips .fang-wx-step-tbl td{padding:6px 6px 6px 0;vertical-align:top;}" +
+			"body.fang-api-page #tips .fang-wx-td-num{width:2em;font-weight:700;color:#0f172a;white-space:nowrap;}" +
+			"body.fang-api-page #tips .fang-wx-url{color:#b45309;font-weight:600;word-break:break-all;}";
 		document.head.appendChild(s);
 		document.documentElement.classList.add("fang-api-page");
 		document.body.classList.add("fang-api-page");
@@ -64,13 +68,18 @@
 			'<div class="fang-wx-notice"><p class="fang-wx-lead-lg">系统检测到内置浏览器限制</p><p class="fang-wx-muted">请点右上角 <b>···</b>，用系统浏览器打开本页。参考地址：<b class="fang-wx-url">' +
 				u +
 				"</b></p></div>",
-			'<div class="fang-wx-notice"><h3 class="fang-wx-h3">外链需在浏览器中访问</h3>' +
-				'<div class="fang-wx-steps fang-wx-steps-br">' +
-				'<span class="fang-wx-num">1.</span>点右上角「···」<br />' +
-				'<span class="fang-wx-num">2.</span>选「在浏览器打开」<br />' +
-				'<span class="fang-wx-num">3.</span>或复制：<span class="fang-wx-url">' +
+			'<div class="fang-wx-notice fang-wx-notice-with-tbl">' +
+				'<h3 class="fang-wx-h3 fang-wx-h3-steps">外链需在浏览器中访问</h3>' +
+				'<table class="fang-wx-step-tbl" cellpadding="0" cellspacing="0" role="presentation" ' +
+				'style="width:100%;border-collapse:collapse;text-align:left;color:#334155;font-size:16px;line-height:1.75;">' +
+				'<tr><td class="fang-wx-td-num" style="width:2em;font-weight:700;color:#0f172a;vertical-align:top;padding:6px 6px 6px 0;">1.</td>' +
+				'<td class="fang-wx-td-txt" style="vertical-align:top;padding:6px 0;">点右上角「···」</td></tr>' +
+				'<tr><td class="fang-wx-td-num" style="width:2em;font-weight:700;color:#0f172a;vertical-align:top;padding:6px 6px 6px 0;">2.</td>' +
+				'<td class="fang-wx-td-txt" style="vertical-align:top;padding:6px 0;">选「在浏览器打开」</td></tr>' +
+				'<tr><td class="fang-wx-td-num" style="width:2em;font-weight:700;color:#0f172a;vertical-align:top;padding:6px 6px 6px 0;">3.</td>' +
+				'<td class="fang-wx-td-txt" style="vertical-align:top;padding:6px 0;">或复制：<span class="fang-wx-url" style="color:#b45309;font-weight:600;word-break:break-all;">' +
 				u +
-				"</span></div></div>",
+				"</span></td></tr></table></div>",
 		];
 		return blocks[id];
 	}
