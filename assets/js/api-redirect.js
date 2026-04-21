@@ -15,20 +15,8 @@
 			"body.fang-api-page{min-height:100vh;min-height:100dvh;min-height:-webkit-fill-available;overscroll-behavior-y:contain;overscroll-behavior-x:none;-webkit-overflow-scrolling:touch;}" +
 			"body.fang-api-page .wrap{min-height:100vh;min-height:100dvh;min-height:-webkit-fill-available;display:flex;align-items:center;justify-content:center;" +
 			"padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));box-sizing:border-box;}" +
-			"body.fang-api-page #tips{width:100%;max-width:420px;padding:0 8px;box-sizing:border-box;word-break:break-word;-webkit-tap-highlight-color:transparent;}" +
-			/* 微信/QQ：壳页 #tips 多为居中，X5 易弱化内联 style，用类 + 高优先级固定版式 */
-			"body.fang-api-page #tips .fang-wx-notice{font-size:16px;line-height:1.65;color:#334155;text-align:left!important;-webkit-text-size-adjust:100%;word-wrap:break-word;}" +
-			"body.fang-api-page #tips .fang-wx-h2{margin:0 0 12px;font-size:20px;font-weight:600;color:#0f172a;line-height:1.35;-webkit-text-size-adjust:100%;}" +
-			"body.fang-api-page #tips .fang-wx-h3{margin:0 0 14px;font-size:17px;font-weight:600;color:#0f172a;line-height:1.4;-webkit-text-size-adjust:100%;}" +
-			"body.fang-api-page #tips .fang-wx-body{margin:0;line-height:1.6;color:#475569;}" +
-			"body.fang-api-page #tips .fang-wx-lead{font-weight:700;margin:0 0 8px;color:#0f172a;font-size:16px;}" +
-			"body.fang-api-page #tips .fang-wx-lead-lg{margin:0 0 10px;font-size:18px;font-weight:600;color:#0f172a;line-height:1.45;}" +
-			"body.fang-api-page #tips .fang-wx-muted{margin:0;font-size:15px;line-height:1.65;color:#64748b;}" +
-			"body.fang-api-page #tips .fang-wx-url{color:#b45309;word-break:break-all;font-weight:600;}" +
-			"body.fang-api-page #tips .fang-wx-em{color:#c00;font-weight:700;}" +
-			"body.fang-api-page #tips .fang-wx-ol{margin:0;padding-left:1.35em;text-align:left!important;color:#334155;line-height:1.75;list-style:decimal;}" +
-			"body.fang-api-page #tips .fang-wx-ol li{margin:0.4em 0;padding-left:0.15em;}" +
-			"body.fang-api-page #tips .fang-wx-card{max-width:320px;margin:0 auto;}";
+			"body.fang-api-page #tips{width:100%;max-width:420px;padding:0 8px;box-sizing:border-box;word-break:break-word;-webkit-tap-highlight-color:transparent;}";
+			/* 微信提示样式见 assets/css/wx-notice.css（壳页 head 直链，避免 X5 仅用 JS 注入时失效或强缓存旧脚本） */
 		document.head.appendChild(s);
 		document.documentElement.classList.add("fang-api-page");
 		document.body.classList.add("fang-api-page");

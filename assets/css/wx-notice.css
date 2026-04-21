@@ -1,0 +1,78 @@
+/**
+ * 微信/QQ 内嵌 WebView：#tips 内 .fang-wx-* 提示块。
+ * 由壳页 <head> 直链加载，避免仅依赖 JS 注入样式被 X5 忽略或旧 JS 缓存。
+ * 换版时改 href 上 ?v= 与脚本 ?v= 一并递增。
+ */
+#tips .fang-wx-notice {
+	font-size: 16px;
+	line-height: 1.65;
+	color: #334155;
+	text-align: left !important;
+	-webkit-text-size-adjust: 100%;
+	word-wrap: break-word;
+}
+#tips .fang-wx-h2 {
+	margin: 0 0 12px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #0f172a;
+	line-height: 1.35;
+	-webkit-text-size-adjust: 100%;
+}
+#tips .fang-wx-h3 {
+	margin: 0 0 14px;
+	font-size: 17px;
+	font-weight: 600;
+	color: #0f172a;
+	line-height: 1.4;
+	-webkit-text-size-adjust: 100%;
+}
+#tips .fang-wx-body {
+	margin: 0;
+	line-height: 1.6;
+	color: #475569;
+}
+#tips .fang-wx-lead {
+	font-weight: 700;
+	margin: 0 0 8px;
+	color: #0f172a;
+	font-size: 16px;
+}
+#tips .fang-wx-lead-lg {
+	margin: 0 0 10px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #0f172a;
+	line-height: 1.45;
+}
+#tips .fang-wx-muted {
+	margin: 0;
+	font-size: 15px;
+	line-height: 1.65;
+	color: #64748b;
+}
+#tips .fang-wx-url {
+	color: #b45309;
+	word-break: break-all;
+	font-weight: 600;
+}
+#tips .fang-wx-em {
+	color: #c00;
+	font-weight: 700;
+}
+#tips .fang-wx-ol {
+	margin: 0;
+	padding-left: 1.35em;
+	text-align: left !important;
+	color: #334155;
+	line-height: 1.75;
+	list-style: decimal;
+}
+#tips .fang-wx-ol li {
+	margin: 0.4em 0;
+	padding-left: 0.15em;
+}
+#tips .fang-wx-card {
+	max-width: 320px;
+	margin: 0 auto;
+}
