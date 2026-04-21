@@ -892,36 +892,15 @@ button,
       margin: 1em 0 0 0;
       position: relative; } }
 
-/* 生成页：输入行与绿色框二维码并列；下方为链接与复制（覆盖全局 button 白字，避免看不见） */
-.fang-top-row {
-  display: -moz-flex;
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: flex;
-  -moz-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -moz-align-items: flex-start;
-  -webkit-align-items: flex-start;
-  -ms-align-items: flex-start;
-  align-items: flex-start;
-  -moz-justify-content: center;
-  -webkit-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-  gap: 1.25em 1.5em;
-  margin: 0 auto;
-  max-width: 52em;
-}
+/* 生成页：表单保持主题默认位置；二维码单独一行左对齐；链接与复制按钮左对齐（覆盖全局 button 白字） */
 .fang-qr-green-card {
-  -moz-flex: 0 0 auto;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  text-align: center;
+  display: block;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 100%;
+  margin: 1.15em 0 0 0;
   padding: 0.65em 0.75em 0.5em;
-  min-width: 8.5em;
+  text-align: left;
   background: linear-gradient(165deg, rgba(28, 180, 149, 0.28) 0%, rgba(28, 180, 149, 0.1) 100%);
   border: 2px solid #1cb495;
   border-radius: 8px;
@@ -933,16 +912,16 @@ button,
   margin: 0 0 0.4em 0;
   color: rgba(255, 255, 255, 0.95);
   font-weight: 600;
+  text-align: left;
 }
 .fang-qr-green-card img {
   display: block;
-  margin: 0 auto;
+  margin: 0;
   width: 168px;
   height: 168px;
   max-width: 100%;
   background: #fff;
   border-radius: 4px;
-  vertical-align: middle;
 }
 .fang-qr-green-card .fang-qr-note {
   display: block;
@@ -951,23 +930,26 @@ button,
   font-size: 0.62em;
   line-height: 1.35;
   color: rgba(255, 255, 255, 0.65);
+  text-align: left;
 }
 .fang-url-msg {
   margin: 1em 0;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
   word-break: break-word;
+  text-align: left;
 }
 .fang-success-panel {
-  margin: 1em auto 0;
-  max-width: 52em;
+  margin: 1em 0 0 0;
   width: 100%;
+  max-width: 52em;
   text-align: left;
 }
 .fang-url-out {
   margin: 0 0 0.75em 0;
   line-height: 1.5;
   word-break: break-all;
+  text-align: left;
 }
 .fang-url-out a {
   color: #fff;
@@ -976,6 +958,7 @@ button,
 }
 .fang-copy-row {
   margin: 0 0 0.75em 0;
+  text-align: left;
 }
 /* 全局 input[type=button]/button 使用 color:#fff !important，此处必须更高优先级 + 白底深字 */
 button#fang-copy-btn.fang-copy-btn,
@@ -1010,20 +993,5 @@ button#fang-copy-btn.fang-copy-btn:active,
   opacity: 0.75;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.5;
-}
-@media screen and (max-width: 736px) {
-  .fang-top-row {
-    -moz-flex-direction: column;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -moz-align-items: center;
-    -webkit-align-items: center;
-    -ms-align-items: center;
-    align-items: center;
-  }
-  .fang-qr-green-card {
-    width: 100%;
-    max-width: 280px;
-  }
+  text-align: left;
 }
