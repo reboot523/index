@@ -65,11 +65,11 @@
 				u +
 				"</b></p></div>",
 			'<div class="fang-wx-notice"><h3 class="fang-wx-h3">外链需在浏览器中访问</h3><div class="fang-wx-steps">' +
-				'<div class="fang-wx-step">1. 点右上角「···」</div>' +
-				'<div class="fang-wx-step">2. 选「在浏览器打开」</div>' +
-				'<div class="fang-wx-step">3. 或复制：<span class="fang-wx-url">' +
+				'<p class="fang-wx-line"><span class="fang-wx-num">1.</span>点右上角「···」</p>' +
+				'<p class="fang-wx-line"><span class="fang-wx-num">2.</span>选「在浏览器打开」</p>' +
+				'<p class="fang-wx-line"><span class="fang-wx-num">3.</span>或复制：<span class="fang-wx-url">' +
 				u +
-				"</span></div></div></div>",
+				"</span></p></div></div>",
 		];
 		return blocks[id];
 	}

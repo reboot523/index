@@ -71,18 +71,29 @@ body {
 	color: #c00;
 	font-weight: 700;
 }
-/* 原 ol 在微信里易错位；改为每步一行、整体居中 */
+/* 微信 X5 常把相邻 div 压成一行；用 p + !important 强制块级换行；序号用独立 span */
 #tips .fang-wx-steps {
-	margin: 0 auto;
+	display: block !important;
 	width: 100%;
-	max-width: 380px;
+	max-width: 400px;
+	margin: 0 auto !important;
+	box-sizing: border-box;
 }
-#tips .fang-wx-step {
-	display: block;
-	margin: 0.5em 0;
-	line-height: 1.75;
+#tips .fang-wx-steps .fang-wx-line {
+	display: block !important;
+	width: 100% !important;
+	margin: 0.55em 0 !important;
+	padding: 0 !important;
+	line-height: 1.75 !important;
 	color: #334155;
-	text-align: center;
+	text-align: center !important;
+	-webkit-text-size-adjust: 100%;
+}
+#tips .fang-wx-steps .fang-wx-num {
+	display: inline !important;
+	font-weight: 700 !important;
+	margin-right: 0.25em;
+	color: #0f172a;
 }
 #tips .fang-wx-card {
 	max-width: 320px;
