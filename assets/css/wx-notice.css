@@ -74,30 +74,22 @@ body {
 	color: #c00;
 	font-weight: 700;
 }
-/* 微信 X5：<br>/多 div 易被压成一行；第 4 套提示改为 table 三行，序号列 + 文案列 */
-#tips .fang-wx-step-tbl {
+/* 第 4 套：pre + pre-line + 源码换行（与 api-redirect 内联 style 一致） */
+#tips .fang-wx-wx4-wrap {
 	width: 100%;
-	max-width: 400px;
-	margin: 0 auto;
-	border-collapse: collapse;
-	text-align: left;
+	text-align: left !important;
+}
+#tips pre.fang-wx-preblock {
+	margin: 0;
+	padding: 0;
+	font-family: system-ui, -apple-system, sans-serif;
 	font-size: 16px;
+	line-height: 2;
 	color: #334155;
-	line-height: 1.75;
+	white-space: pre-line !important;
+	word-break: break-all;
+	text-align: left !important;
 	-webkit-text-size-adjust: 100%;
-}
-#tips .fang-wx-step-tbl td {
-	padding: 6px 6px 6px 0;
-	vertical-align: top;
-}
-#tips .fang-wx-td-num {
-	width: 2em;
-	font-weight: 700;
-	color: #0f172a;
-	white-space: nowrap;
-}
-#tips .fang-wx-td-txt {
-	word-break: break-word;
 }
 #tips .fang-wx-card {
 	max-width: 320px;
