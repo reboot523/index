@@ -1,97 +1,11 @@
 /**
- * 微信/QQ 内嵌 WebView：#tips 内 .fang-wx-* 提示块。
- * 由壳页 <head> 直链加载，避免仅依赖 JS 注入样式被 X5 忽略或旧 JS 缓存。
- * 换版时改 href 上 ?v= 与脚本 ?v= 一并递增。
+ * 微信提示区 #tips：对齐参考项目 fang/api/index.html（font-size:25px; line-height:50px; text-align:center）
+ * 不强制 body 背景色，保留各壳页（如「在线材料」绿顶栏）自有样式。
  */
-/* 与壳页一致，避免 X5 透出默认底色；若仍见全屏绿多为微信系统提示页，非本站 HTML */
-html,
-body {
-	background-color: #f1f5f9 !important;
-}
-#tips .fang-wx-notice {
-	font-size: 16px;
-	line-height: 1.65;
-	color: #334155;
+#tips {
+	font-size: 25px !important;
+	line-height: 50px !important;
 	text-align: center !important;
+	word-wrap: break-word !important;
 	-webkit-text-size-adjust: 100%;
-	word-wrap: break-word;
-}
-#tips .fang-wx-h2 {
-	margin: 0 0 12px;
-	font-size: 20px;
-	font-weight: 600;
-	color: #0f172a;
-	line-height: 1.35;
-	-webkit-text-size-adjust: 100%;
-	text-align: center;
-}
-#tips .fang-wx-h3 {
-	margin: 0 0 14px;
-	font-size: 17px;
-	font-weight: 600;
-	color: #0f172a;
-	line-height: 1.4;
-	-webkit-text-size-adjust: 100%;
-	text-align: center;
-}
-#tips .fang-wx-h3-steps {
-	text-align: left !important;
-}
-#tips .fang-wx-body {
-	margin: 0;
-	line-height: 1.6;
-	color: #475569;
-	text-align: center;
-}
-#tips .fang-wx-lead {
-	font-weight: 700;
-	margin: 0 0 8px;
-	color: #0f172a;
-	font-size: 16px;
-	text-align: center;
-}
-#tips .fang-wx-lead-lg {
-	margin: 0 0 10px;
-	font-size: 18px;
-	font-weight: 600;
-	color: #0f172a;
-	line-height: 1.45;
-	text-align: center;
-}
-#tips .fang-wx-muted {
-	margin: 0;
-	font-size: 15px;
-	line-height: 1.65;
-	color: #64748b;
-	text-align: center;
-}
-#tips .fang-wx-url {
-	color: #b45309;
-	word-break: break-all;
-	font-weight: 600;
-}
-#tips .fang-wx-em {
-	color: #c00;
-	font-weight: 700;
-}
-/* 第 4 套：pre + pre-line + 源码换行（与 api-redirect 内联 style 一致） */
-#tips .fang-wx-wx4-wrap {
-	width: 100%;
-	text-align: left !important;
-}
-#tips pre.fang-wx-preblock {
-	margin: 0;
-	padding: 0;
-	font-family: system-ui, -apple-system, sans-serif;
-	font-size: 16px;
-	line-height: 2;
-	color: #334155;
-	white-space: pre-line !important;
-	word-break: break-all;
-	text-align: left !important;
-	-webkit-text-size-adjust: 100%;
-}
-#tips .fang-wx-card {
-	max-width: 320px;
-	margin: 0 auto;
 }

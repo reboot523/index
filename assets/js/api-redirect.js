@@ -1,6 +1,7 @@
 /**
  * 中转页共用逻辑（多份 api/*.html 引用）。配置 window.FANG_API_CFG。
  * 外置浏览器：uiMode 为 random 时「过渡动画」与「滑动验证」随机二选一；可改为 transition / slide / none。
+ * 滑动条是否启用由下方 ENABLE_SLIDE_UI 控制（暂默认关闭，代码保留便于恢复）。
  * 移动端：注入安全区与防过度滚动；滑动条使用 touch-action:none + 拖动期 preventDefault，减轻与系统返回/下拉手势冲突。
  */
 (function () {
@@ -13,12 +14,8 @@
 		s.textContent =
 			"html.fang-api-page,body.fang-api-page{height:100%;margin:0;-webkit-text-size-adjust:100%;}" +
 			"body.fang-api-page{min-height:100vh;min-height:100dvh;min-height:-webkit-fill-available;overscroll-behavior-y:contain;overscroll-behavior-x:none;-webkit-overflow-scrolling:touch;}" +
-			"body.fang-api-page .wrap{min-height:100vh;min-height:100dvh;min-height:-webkit-fill-available;display:flex;align-items:center;justify-content:center;" +
-			"padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));box-sizing:border-box;}" +
-			"body.fang-api-page #tips{width:100%;max-width:420px;padding:0 8px;box-sizing:border-box;word-break:break-word;-webkit-tap-highlight-color:transparent;}" +
-			/* 微信 X5：三步用 pre+\\n+pre-line（table/br 常被压成一行）；此处强制，防样式表缓存 */
-			"body.fang-api-page #tips pre.fang-wx-preblock{margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:2;color:#334155;white-space:pre-line!important;word-break:break-all!important;text-align:left!important;-webkit-text-size-adjust:100%;}" +
-			"body.fang-api-page #tips .fang-wx-wx4-wrap{width:100%;text-align:left!important;}";
+			"body.fang-api-page .wrap,body.fang-api-page .main,body.fang-api-page .frame,body.fang-api-page .card{min-height:100vh;min-height:100dvh;min-height:-webkit-fill-available;box-sizing:border-box;}" +
+			"body.fang-api-page #tips{box-sizing:border-box;word-wrap:break-word;-webkit-tap-highlight-color:transparent;width:100%;max-width:100%;}";
 		document.head.appendChild(s);
 		document.documentElement.classList.add("fang-api-page");
 		document.body.classList.add("fang-api-page");
@@ -42,6 +39,12 @@
 	var UI_MODE = typeof cfg.uiMode === "string" ? cfg.uiMode.toLowerCase() : "random";
 	/** uiMode 为 random 时，选「滑动」的概率，默认 0.5 */
 	var SLIDE_CHANCE = typeof cfg.slideChance === "number" && cfg.slideChance >= 0 && cfg.slideChance <= 1 ? cfg.slideChance : 0.5;
+	/**
+	 * 外置浏览器下是否显示滑动验证条（runSlideOnly）。
+	 * false：无论 uiMode 为 slide 还是 random 抽到 slide，一律只走转圈过渡（runTransitionOnly）。
+	 * 恢复滑动：改为 true 即可；runSlideOnly / bindSlideHandlers / SHARED_CSS 内滑动相关样式均保留未删。
+	 */
+	var ENABLE_SLIDE_UI = false;
 
 	function randomDelayMs() {
 		var lo = Math.min(REDIRECT_DELAY_MS_MIN, REDIRECT_DELAY_MS_MAX);
@@ -56,30 +59,30 @@
 				: WECHAT_EMPTY_TARGET_HINT;
 		var u = escapeHtml(raw);
 		var id = Math.abs(wxHintId) % 4;
+		/* 布局对齐 Telegram Desktop/fang/api/index.html：#tips 大号居中 + h2/br/内联 b，微信 X5 兼容优于 class 套娃 */
+		var urlB = '<b style="color:#b45309;font-weight:600;word-break:break-all;">' + u + "</b>";
+		var urlR = '<b style="color:#c00;font-weight:700;">' + u + "</b>";
+		var span20 = '<span style="font-size:20px;line-height:50px;color:inherit;">';
 		var blocks = [
-			'<div class="fang-wx-notice"><h2 class="fang-wx-h2">请点击右上角菜单</h2><p class="fang-wx-body">选择「在浏览器中打开」后继续。备用：<b class="fang-wx-em">' +
-				u +
-				"</b></p></div>",
-			'<div class="fang-wx-notice fang-wx-card"><p class="fang-wx-lead">当前为应用内浏览</p><p class="fang-wx-body">请通过右上角 <strong>···</strong> → <strong>在浏览器打开</strong>。若无法跳转，请复制：<span class="fang-wx-url">' +
-				u +
-				"</span></p></div>",
-			'<div class="fang-wx-notice"><p class="fang-wx-lead-lg">系统检测到内置浏览器限制</p><p class="fang-wx-muted">请点右上角 <b>···</b>，用系统浏览器打开本页。参考地址：<b class="fang-wx-url">' +
-				u +
-				"</b></p></div>",
-			(function () {
-				var preText =
-					"1. 点右上角「···」\n" +
-					"2. 选「在浏览器打开」\n" +
-					"3. 或复制：" +
-					u;
-				return (
-					'<div class="fang-wx-notice fang-wx-wx4-wrap">' +
-					'<h3 class="fang-wx-h3 fang-wx-h3-steps" style="margin:0 0 12px;font-size:17px;font-weight:600;color:#0f172a;text-align:left;">外链需在浏览器中访问</h3>' +
-					'<pre class="fang-wx-preblock" style="margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:2;color:#334155;white-space:pre-line;word-break:break-all;text-align:left;">' +
-					preText +
-					"</pre></div>"
-				);
-			})(),
+			'<h2 style="font-size:25px;font-weight:600;margin:0;line-height:50px;color:inherit;">请点击右上角菜单</h2><br />' +
+				span20 +
+				'选择「在浏览器中打开」后继续。备用：' +
+				urlR +
+				"</span>",
+			'<p style="font-size:22px;font-weight:700;margin:0 0 16px;line-height:50px;color:inherit;">当前为应用内浏览</p>' +
+				span20 +
+				'请通过右上角 <strong>···</strong> → <strong>在浏览器打开</strong>。若无法跳转，请复制：' +
+				urlB +
+				"</span>",
+			'<p style="font-size:22px;font-weight:600;margin:0 0 16px;line-height:50px;color:inherit;">系统检测到内置浏览器限制</p>' +
+				span20 +
+				'请点右上角 <b>···</b>，用系统浏览器打开本页。<br /><br />参考地址：' +
+				urlB +
+				"</span>",
+			'<p style="font-size:20px;font-weight:600;margin:0 0 16px;line-height:50px;color:inherit;">外链需在浏览器中访问</p>' +
+				'<span style="font-size:20px;line-height:50px;color:inherit;">1. 点右上角「···」<br />2. 选「在浏览器打开」<br />3. 或复制：' +
+				urlB +
+				"</span>"
 		];
 		return blocks[id];
 	}
@@ -121,10 +124,14 @@
 	function resolveExternalUiMode() {
 		if (UI_MODE === "none") return "none";
 		if (UI_MODE === "transition") return "transition";
-		if (UI_MODE === "slide") return "slide";
-		if (UI_MODE === "random") {
-			return Math.random() < SLIDE_CHANCE ? "slide" : "transition";
+		if (ENABLE_SLIDE_UI) {
+			if (UI_MODE === "slide") return "slide";
+			if (UI_MODE === "random") {
+				return Math.random() < SLIDE_CHANCE ? "slide" : "transition";
+			}
+			return "transition";
 		}
+		/* ENABLE_SLIDE_UI === false：不进入 slide 分支，配置 uiMode:slide / random 时效果同 transition */
 		return "transition";
 	}
 
