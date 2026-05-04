@@ -95,10 +95,19 @@
 		if (h.indexOf("#v1.") !== 0 && h.indexOf("#v2.") !== 0 && h.indexOf("#v3.") !== 0 && h.indexOf("#v4.") !== 0) {
 			throw new Error("not_v1");
 		}
+		// 部分环境（如微信内置浏览器在 301 后跟跳）会在 fragment 末尾多拼「/」；v1–v4 密文为 base64url，不含「/」
+		while (h.length > 1 && h.charAt(h.length - 1) === "/") {
+			h = h.slice(0, -1);
+		}
+		if (h !== location.hash && typeof history.replaceState === "function") {
+			try {
+				history.replaceState(null, "", location.pathname + location.search + h);
+			} catch (e) {}
+		}
 		if (!window.crypto || !window.crypto.subtle || typeof FANG_decryptTargetFromHashFragment !== "function") {
 			throw new Error("crypto");
 		}
-		return await FANG_decryptTargetFromHashFragment(location.hash);
+		return await FANG_decryptTargetFromHashFragment(h);
 	}
 
 	function showTips(html) {
